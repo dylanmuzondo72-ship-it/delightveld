@@ -12,7 +12,7 @@ Included:
 - Descriptive image alt text
 
 After deployment:
-1. Add https://delightveld.vercel.app/sitemap.xml to Google Search Console.
+1. Add https://www.delightveld.com/sitemap.xml to Google Search Console.
 2. Verify the official business name, address and phone numbers.
 3. Replace the Vercel URL with the final custom domain in index.html, robots.txt and sitemap.xml when a domain is connected.
 4. Add genuine project photographs and testimonials as they become available.
