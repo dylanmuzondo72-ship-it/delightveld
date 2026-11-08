@@ -1,14 +1,10 @@
 DELIGHT VELD WEBSITE
 
-Open index.html in a browser to preview the website.
+Media integration:
+- Homepage hero: 20-second muted, looping inline video (12.64 MB), including mobile portrait layout.
+- Development film: 84-second video (49.48 MB), loaded on demand with native controls.
+- Gallery: 20 photographs served from the Images/ and Images/Vp2/ paths on media.delightveld.com.
 
-Important before official publication:
-1. Confirm the registered company name and whether the public brand should be “Delight Veld” or “Delightveld Land Developers”.
-2. Confirm office wording: “Offices 202–203” versus “Suite 203”.
-3. Add the official email address and registration number.
-4. Replace placeholder developments with verified location, stand size, price, payment terms and documentation details.
-5. Replace illustrative images with verified Delight Veld project and machinery photos when available.
+The hero video is decorative and muted. Mobile browsers may still block autoplay under battery saver, data saver, or reduced-motion settings; the poster remains as a fallback. The development film is not preloaded in full to avoid consuming visitors' mobile data.
 
-WhatsApp lines currently included:
-+263 717 515 513
-077 168 3670
+Deploy the contents of this folder to the existing Delight Veld hosting project. Test both video URLs on the live media domain before publishing.

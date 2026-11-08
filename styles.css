@@ -281,10 +281,52 @@ button { cursor: pointer; }
 .gallery-grid { grid-auto-rows:220px; }
 .gallery-item img { background:#242628; }
 @media (max-width:700px) {
-  .hero-video { display:none; }
-  .hero-media { background-image:url('assets/hero-earthmoving.jpg'); }
+  /* Keep the muted, inline hero footage visible on phones as well as desktop. */
+  .hero-video { display:block; width:100%; height:100%; object-fit:cover; object-position:center 55%; }
+  .hero-media { background-image:url('assets/development-aerial-poster.jpg'); background-position:center 52%; }
   .gallery-grid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-auto-rows:170px; }
   .gallery-item.wide { grid-column:1/-1; grid-row:span 1; }
   .development-video-wrap { border-radius:12px; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-video { display:none; } }
+
+
+/* Mobile refinement: compact hero, balanced type and a usable video player. */
+@media (max-width:760px) {
+  .hero { min-height:0; display:flex; flex-direction:column; justify-content:flex-start; }
+  .hero-content { padding-top:clamp(42px,9vh,68px); padding-bottom:42px; }
+  .hero h1 { max-width:12ch; font-size:clamp(2.35rem,9.2vw,3.35rem); line-height:.98; letter-spacing:-1.7px; margin-bottom:20px; }
+  .hero-copy { max-width:38rem; font-size:15.5px; line-height:1.65; margin-bottom:24px; }
+  .hero-actions { display:grid; grid-template-columns:1fr; gap:11px; }
+  .hero-actions .button { width:100%; min-height:52px; padding-inline:16px; }
+  .hero-capabilities { position:relative; inset:auto; }
+  .capability-grid { min-height:0; grid-template-columns:1fr 1fr; padding:8px 0; }
+  .capability-grid > div { padding:14px 8px; gap:10px; min-width:0; }
+  .capability-grid > div:last-child { grid-column:1/-1; }
+  .capability-grid svg { width:25px; height:25px; }
+  .capability-grid strong { font-size:12px; }
+  .capability-grid small { font-size:10px; }
+  .section { padding:54px 0; }
+  .section-heading { margin-bottom:26px; }
+  .section-heading h2, .about h2, .process h2, .quote h2 { font-size:clamp(29px,7.8vw,36px); line-height:1.08; letter-spacing:-1.2px; }
+  .split-heading { display:grid; gap:10px; }
+  .split-heading > p { margin:0; font-size:15px; line-height:1.6; }
+  .development-video { width:100%; height:auto; aspect-ratio:16/9; max-height:none; object-fit:contain; }
+  .development-video-wrap { border-radius:12px; }
+  .video-fallback { margin:12px 0 0; font-size:13px; }
+}
+@media (max-width:420px) {
+  .brand img { width:46px; height:46px; }
+  .brand strong { font-size:15px; }
+  .hero h1 { font-size:clamp(2.2rem,9vw,2.7rem); }
+  .container { width:calc(100% - 32px); }
+}
+
+/* Mobile video playback correction: retain inline muted hero video in portrait. */
+
+@media (max-width:760px) {
+  .hero-media { position:absolute; inset:0; min-height:100%; }
+  .hero-video { pointer-events:none; }
+  .hero-shade { z-index:1; }
+  .hero-content, .hero-capabilities { position:relative; z-index:2; }
+}

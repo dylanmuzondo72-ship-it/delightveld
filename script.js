@@ -44,6 +44,43 @@ document.addEventListener('DOMContentLoaded', () => {
     window.open(`https://wa.me/${recipient}?text=${encodeURIComponent(message)}`, '_blank', 'noopener');
   });
 
+  // Development film: keep the 49 MB file out of the initial page load,
+  // but explicitly request it when the visitor presses Play. Surface a direct
+  // link if the browser cannot fetch or decode the MP4.
+  document.querySelectorAll('.development-video').forEach(video => {
+    const fallback = video.closest('.development-video-wrap')?.nextElementSibling;
+    video.preload = 'metadata';
+    video.playsInline = true;
+    video.addEventListener('waiting', () => {
+      if (fallback) fallback.classList.add('video-error');
+    });
+    video.addEventListener('error', () => {
+      if (fallback) fallback.classList.add('video-error');
+    });
+    video.addEventListener('playing', () => {
+      if (fallback) fallback.classList.remove('video-error');
+    });
+    video.addEventListener('stalled', () => {
+      if (fallback) fallback.classList.add('video-error');
+    });
+  });
+
+  // Mobile browsers sometimes defer muted autoplay until the page is ready.
+  // Retry once after metadata is available; never unmute a background video.
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    heroVideo.muted = true;
+    heroVideo.playsInline = true;
+    const attemptHeroPlayback = () => {
+      const attempt = heroVideo.play();
+      if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {
+        // The poster remains visible if the browser or data-saver blocks autoplay.
+      });
+    };
+    if (heroVideo.readyState >= 2) attemptHeroPlayback();
+    else heroVideo.addEventListener('loadeddata', attemptHeroPlayback, { once: true });
+  }
+
   const modal = document.getElementById('imageModal');
   const modalImage = modal?.querySelector('img');
   document.querySelectorAll('.gallery-item').forEach(item => {
