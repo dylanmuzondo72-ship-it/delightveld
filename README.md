@@ -1,29 +1,22 @@
-# Jah Blex editorial profile website
+# Delight Veld website
 
-A responsive, static profile website for Tawananyasha Katsande, professionally known as Jah Blex and Head Boy Wekubhawa.
+Responsive static website for Delight Veld (Pvt) Ltd, a Zimbabwean land development and property services company.
 
 ## Included
 
-- Editorial profile and brand-work sections
-- 13 supplied photographs
-- Mobile image corrections so portrait and landscape photographs display without forced cropping
-- Responsive gallery and lightbox
-- Embedded Facebook and Instagram video previews
-- YouTube channel preview and direct link
-- Official social links, sources, WhatsApp and phone contact
-- SEO metadata and structured profile data
+- Existing Delight Veld homepage, services, property information and contact sections
+- Responsive layout and existing brand assets
+- 20 development photographs served from Cloudflare R2
+- Homepage hero video and full development video served from Cloudflare R2
+- Lazy-loaded gallery images and click-to-play long video
+
+## R2 media integration
+
+- Homepage hero video (20 seconds, 12.64 MB): `https://media.delightveld.com/Videos/Veld%20vids/ROYALTY_FREE_Business_Technology_Music___Presentation_Background_Music_Royalty_Free_by_MUSIC4VIDEO%28256k%29.mp4`
+- Full development video (approximately 84 seconds, 49.48 MB): `https://media.delightveld.com/Videos/Veld%20vids/ROYALTY_FREE_Business_Technology_Music___Presentation_Background_Music_Royalty_Free_by_MUSIC4VIDEO%28256k%29_1.mp4`
+- Gallery: 20 photographs from the `Images/` and `Images/Vp2/` prefixes on `media.delightveld.com`.
+- The long video is click-to-play (`preload=none`). The homepage hero video is muted/looping on desktop and falls back to the existing poster image on small screens and reduced-motion settings.
 
 ## Deploy
 
-Upload the contents of this folder to Vercel, Netlify, GitHub Pages or any static web host. The `index.html` file must remain at the project root and the `assets` folder must stay beside it.
-
-## Social embeds
-
-Facebook and Instagram control whether their embedded players load. Visitors may be asked to accept cookies or sign in. Direct links are included as a fallback. A TikTok embed was not included because no verified official TikTok profile or video URL was available in the supplied links.
-
-
-## R2 media integration
-- Homepage hero video: https://media.delightveld.com/Videos/Veld%20vids/ROYALTY_FREE_Business_Technology_Music___Presentation_Background_Music_Royalty_Free_by_MUSIC4VIDEO%28256k%29_1.mp4
-- Full development video: https://media.delightveld.com/Videos/Veld%20vids/ROYALTY_FREE_Business_Technology_Music___Presentation_Background_Music_Royalty_Free_by_MUSIC4VIDEO%28256k%29.mp4
-- Gallery: 20 photographs served from the `Images/` and `Images/Vp2/` prefixes on `media.delightveld.com`.
-- The long video is click-to-play (`preload=none`). The homepage hero video is muted/looping on desktop and falls back to the existing poster image on small screens and reduced-motion settings.
+Deploy the contents of this folder to the existing static hosting project. Keep `index.html`, `script.js`, `styles.css` and the `assets` folder together at the site root.
