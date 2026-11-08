@@ -65,23 +65,34 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Mobile browsers sometimes defer muted autoplay until the page is ready.
-  // Retry once after metadata is available; never unmute a background video.
+  // Keep the homepage aerial video moving on desktop and mobile.
+  // Autoplay must remain muted and inline; retry when the browser becomes ready/visible.
   const heroVideo = document.querySelector('.hero-video');
   if (heroVideo) {
     heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
     heroVideo.playsInline = true;
-    const attemptHeroPlayback = () => {
-      const attempt = heroVideo.play();
-      if (attempt && typeof attempt.catch === 'function') attempt.catch(() => {
-        // The poster remains visible if the browser or data-saver blocks autoplay.
-      });
+    heroVideo.setAttribute('muted', '');
+    heroVideo.setAttribute('playsinline', '');
+    heroVideo.setAttribute('webkit-playsinline', '');
+    const startHeroVideo = () => {
+      if (document.visibilityState === 'hidden') return;
+      const playRequest = heroVideo.play();
+      if (playRequest && typeof playRequest.catch === 'function') {
+        playRequest.catch(() => {
+          // Some mobile browsers defer autoplay until the next readiness/visibility event.
+        });
+      }
     };
-    if (heroVideo.readyState >= 2) attemptHeroPlayback();
-    else heroVideo.addEventListener('loadeddata', attemptHeroPlayback, { once: true });
+    ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough'].forEach(eventName => {
+      heroVideo.addEventListener(eventName, startHeroVideo);
+    });
+    window.addEventListener('pageshow', startHeroVideo);
+    document.addEventListener('visibilitychange', startHeroVideo);
+    startHeroVideo();
   }
 
-  const modal = document.getElementById('imageModal');
+  const modal = document.getElementById('imageModal');'imageModal');
   const modalImage = modal?.querySelector('img');
   document.querySelectorAll('.gallery-item').forEach(item => {
     item.addEventListener('click', () => {

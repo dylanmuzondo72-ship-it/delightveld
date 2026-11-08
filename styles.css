@@ -288,7 +288,7 @@ button { cursor: pointer; }
   .gallery-item.wide { grid-column:1/-1; grid-row:span 1; }
   .development-video-wrap { border-radius:12px; }
 }
-@media (prefers-reduced-motion: reduce) { .hero-video { display:none; } }
+/* Hero video remains visible even when reduced-motion is enabled; playback is muted and user-controlled by browser policy. */
 
 
 /* Mobile refinement: compact hero, balanced type and a usable video player. */
@@ -330,3 +330,11 @@ button { cursor: pointer; }
   .hero-shade { z-index:1; }
   .hero-content, .hero-capabilities { position:relative; z-index:2; }
 }
+
+
+/* Force visible background video on all screen sizes */
+.hero-media { z-index: 0; }
+.hero-video { display: block !important; visibility: visible !important; opacity: 1 !important; }
+.hero-shade { z-index: 1; pointer-events: none; }
+.hero-content, .hero-capabilities { position: relative; z-index: 2; }
+@media (max-width:760px) { .hero { position: relative; overflow: hidden; } .hero-media { position: absolute; inset: 0; } .hero-video { width: 100%; height: 100%; object-fit: cover; } }

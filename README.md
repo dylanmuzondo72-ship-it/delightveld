@@ -11,3 +11,6 @@ The mobile homepage uses a poster frame extracted from the supplied aerial foota
 
 ## Deploy
 Upload the contents of this folder to the existing static hosting project. Keep the `assets` folder alongside `index.html`. Test the two video links on a phone after deployment. This ZIP has not been deployed to the live domain.
+
+
+Homepage video playback: the 20-second muted aerial video is configured to autoplay, loop and play inline on desktop and mobile, including portrait mode. Browser autoplay/data-saver restrictions can still prevent autoplay; the video remains visible with its poster fallback. The 84-second development video is click-to-play.
